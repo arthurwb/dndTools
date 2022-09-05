@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Dungeons and Dragons Timer</title>
+    <meta name="description" content="Do not click this, it is a very funny website, haha yes">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/css.css" />
+</head>
+
+<body id="background">
+    <div class="container minHight-500">
+        <div class="float-right">
+            <a href="index.html" class="go-back">GO BACK</a>
+        </div>
+        <h1>Welcome Idiot</h1>
+        <audio id="myAudio">
+            <source src="resourses/fart.mp3" type="audio/mpeg">
+            audio not supported
+        </audio>
+        <audio id="myAudio-battlepass">
+            <source src="resourses/battlePass.mp3" type="audio/mpeg">
+            audio not supported
+        </audio>
+        <button onclick="playSound()">Play Sound</button>
+        <div id="stopwatch" class="timer">
+            00:00:00
+        </div>
+
+        <ul id="buttons">
+            <li><button onclick="startTimer()">Start</button></li>
+            <li><button onclick="stopTimer()">Stop</button></li>
+
+            <li><button onclick="resetTimer()">Reset</button></li>
+        </ul>
+        <div id="output"></div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/timer-js.js"></script>
+    </div>
+</body>
+
+</html>
