@@ -1,8 +1,11 @@
-const timer = document.getElementById('stopwatch');
+const totalTimer = document.getElementById('totalTimer');
+const countDown = document.getElementById('timer');
 
 var hr = 0;
 var min = 0;
 var sec = 0;
+var xmin = 5;
+var xsec = 0;
 var stoptime = true;
 var fart = document.getElementById("myAudio");
 var battlepass = document.getElementById("myAudio-battlepass");
@@ -36,6 +39,16 @@ function timerCycle() {
         hr = parseInt(hr);
 
         sec = sec + 1;
+        xsec = xsec - 1;
+
+        if (xsec < 0) {
+            if (xmin == 0) {
+                xmin = 4
+            } else {
+                xmin = xmin - 1
+            }
+            xsec = 59;
+        }
 
         if (sec == 60) {
             min = min + 1;
@@ -69,18 +82,27 @@ function timerCycle() {
             hr = '0' + hr;
         }
 
-        timer.innerHTML = hr + ':' + min + ':' + sec;
+        if (xsec < 10 || xsec == 0) {
+            timer.innerHTML = xmin + ':' + '0' + xsec;
+        } else {
+            timer.innerHTML = xmin + ':' + xsec;
+        }
+
+        totalTimer.innerHTML = hr + ':' + min + ':' + sec;
 
         setTimeout("timerCycle()", 1000);
     }
 }
 
 function resetTimer() {
-    timer.innerHTML = '00:00:00';
+    timer.innerHTML = '5:00';
+    totalTimer.innerHTML = '00:00:00'
     stoptime = true;
     hr = 0;
     sec = 0;
     min = 0;
+    xsec = 0;
+    xmin = 5
     $("#output").html("");
     $("#background").css("background-color", "#cccccc");
 }

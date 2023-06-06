@@ -138,6 +138,12 @@ input[type=text]:focus {
     font-weight: bold;
 }
 
+.total-timer {
+    font-size: 20px;
+    text-align: center;
+    color: gray;
+}
+
 #stopwatch {
     font-size: 100px;
     position: absolute;
