@@ -99,7 +99,7 @@ input[type=text]:focus {
 /* Media query for screens with a width of 500px or less */
 @media screen and (max-width: 500px) {
     .container {
-        padding: 0;
+        padding: 4px;
         width: 100%;
         margin-left: 0;
         margin-right: 0;
