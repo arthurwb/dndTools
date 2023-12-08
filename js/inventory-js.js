@@ -45,7 +45,7 @@ async function saveData() {
 
 async function addCoins() {
     var fullData = await getData();
-    var coins = parseFloat(fullData.coins);
+    var coins = parseFloat(fullData.coins.toFixed(3));
     coins += parseFloat($("#coinNum").val());
     console.log(typeof(coins), fullData.coins);
     fullData.coins = coins;
@@ -107,7 +107,7 @@ async function getData() {
                 itemCost[1] = 0; 
             }
             itemCost = `${itemCost[0]}g, ${itemCost[1]}s`
-            $("#output").append(`<div id=${id}><p><b>${item.item}: </b>${itemCost}  <button onclick="deleteData(${id})">Delete</button></p><div>`);
+            $("#output").append(`<div class="num" id=${id}><p><b>${item.item}: </b>${itemCost}  <button onclick="deleteData(${id})">Delete</button></p><div>`);
             id++;
         });
         var coins = data.coins;
@@ -117,7 +117,7 @@ async function getData() {
         if (parseInt(coins[1]) > 9) {
             coins[1] = `${coins[1].charAt(0)}.${coins[1].substring(1,2)}`
         }
-        $("#coinTotal").html(`${coins[0]}g, ${coins[1]}s`);
+        $("#coinTotal").html(`<div class="num">${coins[0]}g, ${coins[1]}s</div>`);
 
         console.log(netWorth);
         netWorth = (netWorth / 10) + "";
@@ -125,7 +125,7 @@ async function getData() {
         if (parseInt(netWorth[1]) > 9) {
             netWorth[1] = `${netWorth[1].charAt(0)}.${netWorth[1].substring(1,2)}`
         }
-        $("#netWorth").html(`${netWorth[0]}g, ${netWorth[1]}s`);
+        $("#netWorth").html(`<div class="num">${netWorth[0]}g, ${netWorth[1]}s</div>`);
     });
     return response;
 }
