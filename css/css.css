@@ -95,6 +95,20 @@ input[type=text]:focus {
     background-color: rgb(255, 255, 255);
     padding: 20px;
 }
+
+/* Media query for screens with a width of 500px or less */
+@media screen and (max-width: 500px) {
+    .container {
+        padding: 0;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .lvl {
+        display: none;
+    }
+}
 .minHight-500 {
     min-height: 500px;
 }
