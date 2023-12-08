@@ -1,0 +1,14 @@
+{
+    "inventory": [
+        {
+            "id": 0,
+            "item": "item 1",
+            "cost": 20
+        },
+        {
+            "id": 1,
+            "item": "item 2",
+            "cost": 100
+        }
+    ]
+}
