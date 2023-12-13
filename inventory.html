@@ -12,12 +12,12 @@
 
 <body id="background">
     <div class="container minHight-500">
-        <div class="float-left">
+        <div class="info">
             <p>Input currency in silver pieces</p>
             <p>Do not include any letters, only the amount of silver</p>
             <p>1p = 100s; 1g = 10s; 1c = 0.1s</p>
         </div>
-        <div class="float-right lvl">
+        <div class="float-right phone-hide">
             <a href="index.html" class="go-back">GO BACK</a>
             <div>
                 <br />
@@ -104,9 +104,24 @@
                 <button type="submit">Submit</button>
             </form>
         </div>
-        <h2 class="center">Net Worth: <span class="num" id="netWorth">0</span></h2>
-        <h2>Total Coins: <span class="num" id="coinTotal">0</span></h2>
-        <div>Add Coin: <input type="number" id="coinNum"><button id="coinSubmit">Submit</button></div>
+
+        <h2 class="center">Exp Net Worth: <span class="num" id="expNetWorth">0</span></h2>
+        <div class="editExpDialog hide" id="editExpDialog">
+            <p>Enter your text: <div id="expNetWorthDialog"></div></p>
+            <div>
+                <input style="width: 100%;" type="number" id="expUserInput" />
+                <button onclick="editExp('add')">+</button>
+                <button style="margin-bottom: 5px;" onclick="editExp('sub')">-</button>
+                <button onclick="editExp('cancel')">Cancel</button>
+            </div>
+        </div>
+
+        <h2 class="center">Current Net Worth: <span class="num" id="netWorth">0</span></h2>
+
+        <h2 class="center">Total Coins: <span class="num" id="coinTotal">0</span></h2>
+
+        <div class="center">Add Coin: <input type="number" id="coinNum"><button id="coinSubmit">Submit</button></div>
+
         <h2>Inventory</h2>
         <div id="output"></div>
         <div id="snackbar">Incorrect Input</div>

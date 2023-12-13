@@ -52,6 +52,7 @@ button {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
+    font-weight: bold;
     outline: none;
     color: #fff;
     background-color: rgb(218, 14, 14);
@@ -96,25 +97,29 @@ input[type=text]:focus {
     padding: 20px;
 }
 
-/* Media query for screens with a width of 500px or less */
-@media screen and (max-width: 500px) {
-    .container {
-        padding: 4px;
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .lvl {
-        display: none;
-    }
+.info {
+    width: 25%;
+    float: left;
 }
+
 .minHight-500 {
     min-height: 500px;
 }
 
 .minHight-400 {
     min-height: 400px;
+}
+
+.width-25 {
+    max-width: 25%;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
 }
 
 .output {
@@ -189,6 +194,20 @@ input[type=text]:focus {
     font-family: 'Courier New', Courier, monospace;
 }
 
+.editExpDialog {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
  /* The snackbar - position it at the bottom and in the middle of the screen */
  #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */
@@ -251,4 +270,25 @@ input[type=text]:focus {
     flex: 1;
     padding: 5px;
     border: 1px solid #ccc;
+}
+
+/* Media query for screens with a width of 500px or less */
+@media screen and (max-width: 500px) {
+    .container {
+        padding: 4px;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .phone-hide {
+        display: none;
+    }
+
+    .info {
+        width: 100%;
+        text-align: center;
+        float: none;
+        margin: auto;
+    }
 }

@@ -18,26 +18,16 @@ async function saveData() {
             "item": item,
             "cost": cost
         }
+        fullData.expNet += cost;
 
         fullData.inventory.push(newItem);
         console.log(fullData);
 
-        await $.ajax({
-            url: jsonBlob,
-            type: 'PUT',
-            contentType: 'application/json',
-            data: JSON.stringify(fullData),
-            success: function(data) {
-                console.log('Entry saved successfully:', data);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error('Error saving entry:', textStatus, errorThrown);
-            },
-        });
+        await setData(fullData);
         
         $("#itemName").val("");
         $("#itemCost").val("");
-        await getData();
+        await fillPage();
     } catch (error) {
         console.error('An error occurred:', error);
     }
@@ -47,24 +37,14 @@ async function addCoins() {
     var fullData = await getData();
     var coins = parseFloat(fullData.coins.toFixed(3));
     coins += parseFloat($("#coinNum").val());
+    fullData.expNet += parseFloat($("#coinNum").val());
     console.log(typeof(coins), fullData.coins);
     fullData.coins = coins;
 
-    await $.ajax({
-        url: jsonBlob,
-        type: 'PUT',
-        contentType: 'application/json',
-        data: JSON.stringify(fullData),
-        success: function(data) {
-            console.log('Entry saved successfully:', data);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error saving entry:', textStatus, errorThrown);
-        },
-    });
+    await setData(fullData);
 
     $("#coinNum").val("");
-    await getData();
+    await fillPage();
 }
 
 async function deleteData(id) {
@@ -73,11 +53,17 @@ async function deleteData(id) {
     var fullData = await getData();
     fullData.inventory.splice(id, 1);
 
+    await setData(fullData);
+
+    await fillPage();
+}
+
+async function setData(data) {
     await $.ajax({
         url: jsonBlob,
         type: 'PUT',
         contentType: 'application/json',
-        data: JSON.stringify(fullData),
+        data: JSON.stringify(data),
         success: function(data) {
             console.log('Entry saved successfully:', data);
         },
@@ -85,49 +71,87 @@ async function deleteData(id) {
             console.error('Error saving entry:', textStatus, errorThrown);
         },
     });
-
-    await getData();
 }
 
 async function getData() {
     var response = [];
-    $("#output").html(``);
     await $.get(jsonBlob, function(data) {
         response = data;
-        var netWorth = 0;
-        var id = 0;
-        data.inventory.forEach(item => {
-            netWorth += item.cost;
-            var itemCost = item.cost;
-            itemCost = (itemCost / 10) + "";
-            itemCost = itemCost.split(".");
-            if (parseInt(itemCost[1]) > 9) {
-                itemCost[1] = `${itemCost[1].charAt(0)}.${itemCost[1].substring(1,2)}`
-            } else if (itemCost[1] == undefined) {
-                itemCost[1] = 0; 
-            }
-            itemCost = `${itemCost[0]}g, ${itemCost[1]}s`
-            $("#output").append(`<div class="num" id=${id}><p><b>${item.item}: </b>${itemCost}  <button onclick="deleteData(${id})">Delete</button></p><div>`);
-            id++;
-        });
-        var coins = data.coins;
-        netWorth += coins;
-        coins = (coins / 10) + "";
-        coins = coins.split(".");
-        if (parseInt(coins[1]) > 9) {
-            coins[1] = `${coins[1].charAt(0)}.${coins[1].substring(1,2)}`
-        }
-        $("#coinTotal").html(`<div class="num">${coins[0]}g, ${coins[1]}s</div>`);
-
-        console.log(netWorth);
-        netWorth = (netWorth / 10) + "";
-        netWorth = netWorth.split(".");
-        if (parseInt(netWorth[1]) > 9) {
-            netWorth[1] = `${netWorth[1].charAt(0)}.${netWorth[1].substring(1,2)}`
-        }
-        $("#netWorth").html(`<div class="num">${netWorth[0]}g, ${netWorth[1]}s</div>`);
     });
     return response;
+}
+
+async function fillPage() {
+    $("#output").html(``);
+
+    var data = await getData();
+    var netWorth = 0;
+    var id = 0;
+    data.inventory.forEach(item => {
+        netWorth += item.cost;
+        var itemCost = formatNum(item.cost);
+        itemCost = `${itemCost[0]}g, ${itemCost[1]}s`
+        $("#output").append(`<div class="num" id=${id}><p><b>${item.item}: </b>${itemCost}  <button onclick="deleteData(${id})">Delete</button></p><div>`);
+        id++;
+    });
+    
+    var coins = data.coins;
+    var expNetWorth = data.expNet;
+    netWorth += coins;
+
+    expNetWorth = formatNum(expNetWorth);
+    $("#expNetWorth").html(`<div>${expNetWorth[0]}g, ${expNetWorth[1]}s <button onclick="showExpDialog()">Edit</button></div>`);
+    $("#expNetWorthDialog").html(`<div>${expNetWorth[0]}g, ${expNetWorth[1]}s</div>`);
+
+    coins = formatNum(coins);
+    $("#coinTotal").html(`<div>${coins[0]}g, ${coins[1]}s</div>`);
+
+    netWorth = formatNum(netWorth);
+    $("#netWorth").html(`<div>${netWorth[0]}g, ${netWorth[1]}s</div>`);
+}
+
+function showExpDialog() {
+    $("#editExpDialog").removeClass("hide").addClass("show");
+}
+
+async function editExp(option) {
+    var input = $("#expUserInput").val();
+    var data = await getData();
+    
+    if (/^\d+$/.test(input) || input == "") {
+        input = parseInt(input);
+        switch (option) {
+            case 'add':
+                data.expNet += input;
+                break;
+            case 'sub':
+                data.expNet -= input;
+                break;
+            case 'cancel':
+                break;
+            default:
+                break;
+        }
+        setData(data);
+    } else {
+        snackBar();
+    }
+
+    $("#expUserInput").val("");
+    $("#editExpDialog").removeClass("show").addClass("hide");
+    fillPage();
+}
+
+function formatNum(num) {
+    console.log(num);
+    num = (num / 10) + "";
+    num = num.split(".");
+    if (parseInt(num[1]) > 9) {
+        num[1] = `${num[1].charAt(0)}.${num[1].substring(1,2)}`
+    } else if (num[1] == undefined) {
+        num[1] = "0";
+    }
+    return num;
 }
 
 function snackBar() {
@@ -137,7 +161,7 @@ function snackBar() {
 }
 
 window.onload = async function() {
-    await getData();
+    await fillPage();
     $("#inventoryForm").on("submit", saveData);
     $("#coinSubmit").click(addCoins);
 }
