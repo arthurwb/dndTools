@@ -18,8 +18,14 @@ async function saveData() {
         console.log(item, cost);
 
         var fullData = await getData();
+
+        var id = 0;
+        if (fullData.inventory[fullData.inventory.length - 1]) {
+            var id = fullData.inventory[fullData.inventory.length - 1].id + 1;
+        }
+
         var newItem = {
-            "id": fullData.inventory.length,
+            "id": id,
             "item": item,
             "cost": cost
         }
@@ -63,6 +69,21 @@ async function deleteData(id) {
     await fillPage();
 }
 
+async function sellData(id) {
+    console.log("sell");
+    id = parseInt(id);
+    var data = await getData();
+    for (const item of data.inventory) {
+        console.log(item);
+        if (item.id == id) {
+            console.log(item.cost + ", " + data.coins);
+            data.coins += item.cost;
+        }
+    }
+    await setData(data);
+    await deleteData(id);
+}
+
 async function setData(data) {
     await $.ajax({
         url: jsonBlob,
@@ -96,7 +117,7 @@ async function fillPage() {
         netWorth += item.cost;
         var itemCost = formatNum(item.cost);
         itemCost = `${itemCost[0]}g, ${itemCost[1]}s`
-        $("#output").append(`<div class="num" id=${id}><p><b>${item.item}: </b>${itemCost}  <button onclick="deleteData(${id})">Delete</button></p><div>`);
+        $("#output").append(`<div class="num" id=${id}><p><b>${item.item}: </b>${itemCost}  <button onclick="deleteData(${id})">Delete</button> <button onclick="sellData(${id})">Sell</button></p><div>`);
         id++;
     });
     
