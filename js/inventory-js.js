@@ -1,4 +1,9 @@
-const jsonBlob = "https://jsonblob.com/api/jsonBlob/1182735710951432192";
+const databaseDic = {
+    "brooks": "1182735710951432192",
+    "jesse": "1186691754790608896"
+};
+var currentDatabase = "brooks";
+var jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.brooks}`;
 
 async function saveData() {
     try {
@@ -160,8 +165,22 @@ function snackBar() {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
+function switchDatabase() {
+    if (currentDatabase == "brooks") {
+        currentDatabase = "jesse";
+        jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.jesse}`;
+        $("#switchDatabase").text("Database: Jesse");
+    } else if (currentDatabase == "jesse") {
+        currentDatabase = "brooks";
+        jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.brooks}`;
+        $("#switchDatabase").text("Database: Brooks");
+    }
+    fillPage();
+}
+
 window.onload = async function() {
     await fillPage();
     $("#inventoryForm").on("submit", saveData);
     $("#coinSubmit").click(addCoins);
+    $("#switchDatabase").click(switchDatabase);
 }
