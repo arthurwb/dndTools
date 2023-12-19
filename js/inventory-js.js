@@ -169,7 +169,7 @@ async function editExp(option) {
             default:
                 break;
         }
-        setData(data);
+        await setData(data);
     } else {
         snackBar("incorrect input");
     }
