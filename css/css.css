@@ -52,6 +52,7 @@ button {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
+    font-size: 15px;
     font-weight: bold;
     outline: none;
     color: #fff;
@@ -290,5 +291,9 @@ input[type=text]:focus {
         text-align: center;
         float: none;
         margin: auto;
+    }
+
+    .center {
+        width: auto;
     }
 }
