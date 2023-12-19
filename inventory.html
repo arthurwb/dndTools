@@ -116,6 +116,14 @@
                 <button onclick="editExp('cancel')">Cancel</button>
             </div>
         </div>
+        <div class="editExpDialog hide" id="sellDialog">
+            <p>Enter sold amount: <div id="sellAmount"></div></p>
+            <div>
+                <input style="width: 100%;" type="number" id="sellInput" />
+                <button onclick="sellData('sell')">Sell</button>
+                <button onclick="sellData('cancel')">Cancel</button>
+            </div>
+        </div>
 
         <h2 class="center">Current Net Worth: <span class="num" id="netWorth">0</span></h2>
 
@@ -125,7 +133,7 @@
 
         <h2>Inventory</h2>
         <div id="output"></div>
-        <div id="snackbar">Incorrect Input</div>
+        <div id="snackbar"></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="js/inventory-js.js"></script>
     </div>

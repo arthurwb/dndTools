@@ -2,6 +2,7 @@ const databaseDic = {
     "brooks": "1182735710951432192",
     "jesse": "1186691754790608896"
 };
+var sellId = 0;
 var currentDatabase = "brooks";
 var jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.brooks}`;
 
@@ -15,7 +16,6 @@ async function saveData() {
         if (typeof(cost) == "string") {
             cost = parseFloat(cost);
         }
-        console.log(item, cost);
 
         var fullData = await getData();
 
@@ -29,10 +29,8 @@ async function saveData() {
             "item": item,
             "cost": cost
         }
-        fullData.expNet += cost;
 
         fullData.inventory.push(newItem);
-        console.log(fullData);
 
         await setData(fullData);
         
@@ -40,7 +38,17 @@ async function saveData() {
         $("#itemCost").val("");
         await fillPage();
     } catch (error) {
+        snackBar("Input Error");
         console.error('An error occurred:', error);
+    }
+}
+
+async function testExpNet () {
+    var data = await getData();
+    if (data.currentNet > data.expNet) {
+        data.expNet = data.currentNet;
+        await setData(data);
+        await fillPage();
     }
 }
 
@@ -48,8 +56,6 @@ async function addCoins() {
     var fullData = await getData();
     var coins = parseFloat(fullData.coins.toFixed(3));
     coins += parseFloat($("#coinNum").val());
-    fullData.expNet += parseFloat($("#coinNum").val());
-    console.log(typeof(coins), fullData.coins);
     fullData.coins = coins;
 
     await setData(fullData);
@@ -59,7 +65,6 @@ async function addCoins() {
 }
 
 async function deleteData(id) {
-    console.log("delete");
     id = parseInt(id);
     var fullData = await getData();
     fullData.inventory.splice(id, 1);
@@ -69,19 +74,15 @@ async function deleteData(id) {
     await fillPage();
 }
 
-async function sellData(id) {
-    console.log("sell");
-    id = parseInt(id);
-    var data = await getData();
-    for (const item of data.inventory) {
-        console.log(item);
-        if (item.id == id) {
-            console.log(item.cost + ", " + data.coins);
-            data.coins += item.cost;
-        }
+async function sellData(option) {
+    if (option == "sell") {
+        var data = await getData();
+        data.coins += parseFloat($("#sellInput").val());
+        await setData(data);
+        await deleteData(sellId);
     }
-    await setData(data);
-    await deleteData(id);
+    $("#sellDialog").removeClass("show").addClass("hide");
+    fillPage();
 }
 
 async function setData(data) {
@@ -117,13 +118,14 @@ async function fillPage() {
         netWorth += item.cost;
         var itemCost = formatNum(item.cost);
         itemCost = `${itemCost[0]}g, ${itemCost[1]}s`
-        $("#output").append(`<div class="num" id=${id}><p><b>${item.item}: </b>${itemCost}  <button onclick="deleteData(${id})">Delete</button> <button onclick="sellData(${id})">Sell</button></p><div>`);
+        $("#output").append(`<div class="num" id=${id}><p><b>${item.item}: </b>${itemCost}  <button onclick="deleteData(${id})">Delete</button> <button onclick="showSellDialog(${id})">Sell</button></p><div>`);
         id++;
     });
     
     var coins = data.coins;
     var expNetWorth = data.expNet;
     netWorth += coins;
+    data.currentNet = netWorth;
 
     expNetWorth = formatNum(expNetWorth);
     $("#expNetWorth").html(`<div>${expNetWorth[0]}g, ${expNetWorth[1]}s <button onclick="showExpDialog()">Edit</button></div>`);
@@ -134,10 +136,18 @@ async function fillPage() {
 
     netWorth = formatNum(netWorth);
     $("#netWorth").html(`<div>${netWorth[0]}g, ${netWorth[1]}s</div>`);
+
+    await setData(data);
+    await testExpNet();
 }
 
 function showExpDialog() {
     $("#editExpDialog").removeClass("hide").addClass("show");
+}
+
+function showSellDialog(id) {
+    sellId = id;
+    $("#sellDialog").removeClass("hide").addClass("show");
 }
 
 async function editExp(option) {
@@ -160,7 +170,7 @@ async function editExp(option) {
         }
         setData(data);
     } else {
-        snackBar();
+        snackBar("incorrect input");
     }
 
     $("#expUserInput").val("");
@@ -169,7 +179,6 @@ async function editExp(option) {
 }
 
 function formatNum(num) {
-    console.log(num);
     num = (num / 10) + "";
     num = num.split(".");
     if (parseInt(num[1]) > 9) {
@@ -180,10 +189,11 @@ function formatNum(num) {
     return num;
 }
 
-function snackBar() {
-    var x = document.getElementById("snackbar");
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+function snackBar(text) {
+    var snackbar = $("#snackbar");
+    snackbar.text(text);
+    snackbar.addClass("show");
+    setTimeout(function(){ snackbar.removeClass("show"); }, 3000);
 }
 
 function switchDatabase() {
@@ -197,6 +207,7 @@ function switchDatabase() {
         $("#switchDatabase").text("Database: Brooks");
     }
     fillPage();
+    snackBar(`Switched to database: ${currentDatabase}`)
 }
 
 window.onload = async function() {
