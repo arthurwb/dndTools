@@ -81,6 +81,7 @@ async function sellData(option) {
         await setData(data);
         await deleteData(sellId);
     }
+    $("#sellInput").val("");
     $("#sellDialog").removeClass("show").addClass("hide");
     fillPage();
 }
