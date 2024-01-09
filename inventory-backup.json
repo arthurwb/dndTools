@@ -1,97 +1,82 @@
 {
-    "coins": 1157,
-    "expNet": 8147.8,
-    "currentNet": 7124.5,
-    "inventory": [
-      {
-        "id": 5,
-        "item": "Tiny Swords",
-        "cost": 7.5
-      },
-      {
-        "id": 6,
-        "item": "Cart",
-        "cost": 70
-      },
-      {
-        "id": 7,
-        "item": "Mule",
-        "cost": 40
-      },
-      {
-        "id": 8,
-        "item": "Leather Armor",
-        "cost": 60
-      },
-      {
-        "id": 9,
-        "item": "Miscellaneous",
-        "cost": 120
-      },
-      {
-        "id": 10,
-        "item": "Mouse",
-        "cost": 0
-      },
-      {
-        "id": 11,
-        "item": "Mouse",
-        "cost": 0
-      },
-      {
-        "id": 12,
-        "item": "Maslow's Scalpel",
-        "cost": 750
-      },
-      {
-        "id": 13,
-        "item": "Arcane Focus",
-        "cost": 20
-      },
-      {
-        "id": 14,
-        "item": "Confession Documents (sell to library)",
-        "cost": 150
-      },
-      {
-        "id": 15,
-        "item": "Kitchenware",
-        "cost": 200
-      },
-      {
-        "id": 16,
-        "item": "Potion of healing",
-        "cost": 250
-      },
-      {
-        "id": 17,
-        "item": "Lab equipment",
-        "cost": 350
-      },
-      {
-        "id": 18,
-        "item": "Arcane Tomes",
-        "cost": 450
-      },
-      {
-        "id": 19,
-        "item": "Longsword",
-        "cost": 350
-      },
-      {
-        "id": 20,
-        "item": "Trinkets",
-        "cost": 280
-      },
-      {
-        "id": 21,
-        "item": "Bag of Holding",
-        "cost": 2500
-      },
-      {
-        "id": 22,
-        "item": "Chain Maille",
-        "cost": 370
-      }
-    ]
-  }
+  "coins": 2331,
+  "expNet": 8448.5,
+  "currentNet": 8448.5,
+  "inventory": [
+    {
+      "id": 5,
+      "item": "Tiny Swords",
+      "cost": 7.5
+    },
+    {
+      "id": 6,
+      "item": "Cart",
+      "cost": 70
+    },
+    {
+      "id": 7,
+      "item": "Mule",
+      "cost": 40
+    },
+    {
+      "id": 8,
+      "item": "Leather Armor",
+      "cost": 60
+    },
+    {
+      "id": 9,
+      "item": "Miscellaneous",
+      "cost": 120
+    },
+    {
+      "id": 10,
+      "item": "Mouse",
+      "cost": 0
+    },
+    {
+      "id": 11,
+      "item": "Mouse",
+      "cost": 0
+    },
+    {
+      "id": 12,
+      "item": "Maslow's Scalpel",
+      "cost": 750
+    },
+    {
+      "id": 14,
+      "item": "Confession Documents (sell to library)",
+      "cost": 150
+    },
+    {
+      "id": 16,
+      "item": "Potion of healing",
+      "cost": 250
+    },
+    {
+      "id": 17,
+      "item": "Lab equipment",
+      "cost": 350
+    },
+    {
+      "id": 18,
+      "item": "Arcane Tomes",
+      "cost": 450
+    },
+    {
+      "id": 21,
+      "item": "Bag of Holding",
+      "cost": 2500
+    },
+    {
+      "id": 22,
+      "item": "Chain Maille",
+      "cost": 370
+    },
+    {
+      "id": 23,
+      "item": "Relics",
+      "cost": 1000
+    }
+  ]
+}
