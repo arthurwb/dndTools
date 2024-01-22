@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>City: Doripania</title>
+    <link rel="stylesheet" href="../css/citycss.css" />
+  </head>
+  <body>
+    <div class="container">
+        <a href="../citieslist.html" class="go-back">GO BACK</a><br />
+        <button class="h1collapsible" onclick="toggleSection('city')">City: Doripania</button>
+        <div class="content" id="city">
+
+            <button class="h2collapsible" onclick="toggleSection('population')">Population</button>
+            <div class="content" id="population">
+            <p>17,000 - Small City</p>
+            <ul>
+                <li>75% Human</li>
+                <li>15% Dwarven</li>
+                <li>5% Halfling</li>
+                <li>3% Elven</li>
+                <li>2% Other</li>
+            </ul>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('econ-ac')">Economic Activities</button>
+            <div class="content" id="econ-ac">
+            <p>
+                City focuses mostly on trade in and out of Maldantis, particularly with
+                Lorn to the north and Kirhall to the west.
+            </p>
+            <p>
+                They are a significant merchant town and most of their income comes from
+                trade and income tax from local and foreign merchants.
+            </p>
+            <i>Economic Breakdown</i>
+            <ul>
+                <li>Foreign Trade</li>
+                <li>River Work</li>
+                <li>Lumber</li>
+                <li>Agriculture</li>
+                <li>Artesian Goods</li>
+            </ul>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('language')">Language</button>
+            <div class="content" id="language">
+            <p>
+                Almost all inhabitants speak common as a primary language with a
+                distinct rural Maldant accent and dialect. Small Dwarven cloisters
+                primarily speak Dwarvish.
+            </p>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('religions')">Religions</button>
+            <div class="content" id="religions">
+            <p>
+                The national religion of Maldantis is the Church of Taro. Other
+                religions are permitted but ostracized and unrecognized.
+            </p>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('political-systems')">Political Systems</button>
+            <div class="content" id="political-systems">
+            <p>
+                Doripania falls under the rule of Folly and to a greater extent
+                Maldantis and as such they are ruled by the Arch Pontiff Aralius. The
+                government of Maldantis is a Theocracy.
+            </p>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('settlements')">Settlements</button>
+            <div class="content" id="settlements">
+            <ul>
+                <li><strong>Capinia:</strong> Hamlet located south of the city</li>
+                <li>
+                <strong>Moesia Rivera:</strong> Fishing village and trade stop north
+                along the Great Taran River.
+                </li>
+            </ul>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('food')">Food</button>
+            <div class="content" id="food">
+            <p>
+                The region relies heavily on the cereals of the mainland though they
+                take heavily from the heavy meaty dishes of Kirhall and the roots and
+                greens of the north. Doripania is known for their very well-rounded
+                dishes and lavish culinary culture found in the upper-class of the city.
+            </p>
+            </div>
+        </div>
+        <button class="h1collapsible" onclick="toggleSection('region')">Region</button>
+        <div class="content" id="region">
+
+          <button class="h2collapsible" onclick="toggleSection('landforms')">Landforms</button>
+          <div class="content" id="landforms">
+            <p><strong>Biome:</strong> Temperate Steppe</p>
+            <p>
+              The city finds itself in a small valley nestled between the hills to the
+              north and the hills which cup the southern regions of the city, forming
+              a wall between it and the southern forest.
+            </p>
+          </div>
+
+          <button class="h2collapsible" onclick="toggleSection('rock-minerals')">Rock & Minerals</button>
+          <div class="content" id="rock-minerals">
+            <p>Moderate tin and coal deposits in the northern hills.</p>
+          </div>
+
+          <button class="h2collapsible" onclick="toggleSection('water')">Water</button>
+          <div class="content" id="water">
+            <p>The city is placed along the Great Taran River at a substantial crossing.</p>
+          </div>
+
+          <button class="h2collapsible" onclick="toggleSection('weather-climate')">Weather & Climate</button>
+          <div class="content" id="weather-climate">
+            <p>The region is temperate with colder winters due to its proximity to the river.</p>
+          </div>
+
+          <button class="h2collapsible" onclick="toggleSection('plants')">Plants</button>
+          <div class="content" id="plants">
+            <p>Forests consist mostly of various oaks and pines. Common crops are wheat, barley, and corn.</p>
+            <i>Local Plants</i>
+            <ul>
+              <li>
+                <strong>Bent Thorn:</strong> Small thistle type plant, very poisonous,
+                often used in pest control poisons.
+              </li>
+            </ul>
+          </div>
+
+          <button class="h2collapsible" onclick="toggleSection('animals')">Animals</button>
+          <div class="content" id="animals">
+            <p>
+              Most large magical beasts have been hunted to near extinction, what is
+              left is common plains and woodland creatures, most notably boar and
+              deer.
+            </p>
+            <i>Local Animals</i>
+            <ul>
+              <li>
+                <strong>North Chester Root Hog:</strong> A wild boar known for its
+                ability to find and dig roots.
+              </li>
+            </ul>
+          </div>
+
+          <button class="h2collapsible" onclick="toggleSection('soil')">Soil</button>
+          <div class="content" id="soil">
+            <p>Silty Clay Loam.</p>
+          </div>
+
+        </div>
+        <img src="../maps/doripania.PNG">
+    </div>
+    <script>
+        function toggleSection(sectionId) {
+          var content = document.getElementById(sectionId);
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        }
+      </script>
+  </body>
+</html>
