@@ -68,7 +68,8 @@ async function deleteData(id) {
     id = parseInt(id);
     var fullData = await getData();
     fullData.inventory.splice(id, 1);
-
+    var item = fullData.inventory.find(item=>item.id===sellId);
+    console.log(item);
     await setData(fullData);
 
     await fillPage();
@@ -78,6 +79,7 @@ async function sellData(option) {
     if (option == "sell") {
         var data = await getData();
         data.coins += parseFloat($("#sellInput").val());
+        
         await setData(data);
         await deleteData(sellId);
     }

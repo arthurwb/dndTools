@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>City: Aristeium</title>
+    <link rel="stylesheet" href="../css/citycss.css" />
+  </head>
+  <body>
+    <div class="container">
+      <a href="../citieslist.html" class="go-back">GO BACK</a><br />
+      <button class="h1collapsible" onclick="toggleSection('city')">
+        City: Aristeium
+      </button>
+      <div class="content" id="city">
+        <button class="h2collapsible" onclick="toggleSection('population')">
+          Population
+        </button>
+        <div class="content" id="population">
+          <p>25,000 - City</p>
+          <ul>
+            <li>75% - Human</li>
+            <li>10% - Elven</li>
+            <li>10% - Dwarven</li>
+            <li>5% - Other</li>
+          </ul>
+        </div>
+
+        <button class="h2collapsible" onclick="toggleSection('econ-ac')">
+          Economic Activities
+        </button>
+        <div class="content" id="econ-ac">
+          <p>
+            Much of the regions economy is focused on collection of goods from
+            the nearby Lake Sabastian and from the hills and forests which
+            surround it.
+          </p>
+          <p>
+            The region focuses mostly on agriculture and have become mostly
+            self-sufficient, priding themselves on requiring little imports from
+            the rest of Maldantis.
+          </p>
+          <i>Economic Breakdown</i>
+          <ul>
+            <li>Agriculture</li>
+            <li>Aquaculture</li>
+            <li>Fishing</li>
+            <li>Lumber</li>
+            <li>Mining</li>
+          </ul>
+        </div>
+
+        <button class="h2collapsible" onclick="toggleSection('language')">
+          Language
+        </button>
+        <div class="content" id="language">
+          <p>
+            Most people of Aristeium and Lorn speak primarily common, though
+            many merchants will learn a small amount of elven to trade with the
+            odd wood elf who makes their way south from Nalia.
+          </p>
+        </div>
+
+        <button class="h2collapsible" onclick="toggleSection('religions')">
+          Religions
+        </button>
+        <div class="content" id="religions">
+          <p>
+            The state religion of Maldantis is the Church of Taro, though Lorn
+            is known for its independence so there is a sizable population of
+            Orthodox Aeinists.
+          </p>
+          <p>
+            Due to the regions reliance and almost veneration of the lake, many
+            members of the Church of Ul feel welcome.
+          </p>
+        </div>
+
+        <button
+          class="h2collapsible"
+          onclick="toggleSection('political-systems')"
+        >
+          Political Systems
+        </button>
+        <div class="content" id="political-systems">
+          <p>
+            In contrast to much of the surrounding region Aristeium and Lorn are
+            ruled by a dual-government.
+          </p>
+          <p>
+            The ancient monarchy of Aristeium has maintained their rule while
+            allowing for the church to act as a second chair. As such, the
+            region is ruled by Sevtus royal family and the current High Pontiff
+            Malik.
+          </p>
+        </div>
+
+        <button class="h2collapsible" onclick="toggleSection('settlements')">
+          Settlements
+        </button>
+        <div class="content" id="settlements">
+          <ul>
+            <li>
+              <strong>Molas:</strong> Northern port town tied closely to
+              Aristeium, serves as their connection to the lake.
+            </li>
+            <li>
+              <strong>Senca:</strong> An outlying town which connects Aristeium
+              to the northern and more rural regions of Lorn, also functions as
+              a port town.
+            </li>
+          </ul>
+        </div>
+
+        <button class="h2collapsible" onclick="toggleSection('food')">
+          Food
+        </button>
+        <div class="content" id="food">
+          <p>
+            As would be expected much of the cuisine of the region is focused on
+            fish and other products of the lake.
+          </p>
+          <p>
+            There have been many influences from Nalia, though the people take
+            pride in their culture and often see elven dishes as not robust
+            enough.
+          </p>
+        </div>
+      </div>
+
+      <button class="h1collapsible" onclick="toggleSection('region')">
+        Region
+      </button>
+      <div class="content" id="region">
+        <button class="h2collapsible" onclick="toggleSection('landforms')">
+          Landforms
+        </button>
+        <div class="content" id="landforms">
+          <p><strong>Biome:</strong> Temperate Broadleaf Forest</p>
+          <p>
+            The city and its surrounding region boasts a very diverse array of
+            different landscapes, with ore-filled hills to the north-east,
+            forests blocking them from a great lake to the north and fertile
+            planes to the south.
+          </p>
+        </div>
+
+        <button class="h2collapsible" onclick="toggleSection('rock-minerals')">
+          Rock & Minerals
+        </button>
+        <div class="content" id="rock-minerals">
+          <p>
+            The region has expansive iron, coal, and quartz mines in the
+            north-east.
+          </p>
+        </div>
+
+        <button class="h2collapsible" onclick="toggleSection('water')">
+          Water
+        </button>
+        <div class="content" id="water">
+          <p>
+            Lake Sabastian acts as an end for Erala Sent and is a repository for
+            many of the minerals and nutrients which promote a large and healthy
+            fish population.
+          </p>
+          <p>
+            The cold waters do lead to the region having colder winters than
+            other regions to the west and east.
+          </p>
+        </div>
+
+        <button
+          class="h2collapsible"
+          onclick="toggleSection('weather-climate')"
+        >
+          Weather & Climate
+        </button>
+        <div class="content" id="weather-climate">
+          <p>
+            The region is often cool and temperate with regions away from Lake
+            Sabastian becoming progressively dryer and dryer with the region
+            immediately around the lake hosting very wet winters and autumns.
+          </p>
+        </div>
+
+        <button class="h2collapsible" onclick="toggleSection('plants')">
+          Plants
+        </button>
+        <div class="content" id="plants">
+          <p>
+            The region around Aristeium holds a very diverse set of biomes which
+            leads to the region being to host various types of flora.
+          </p>
+          <i>Local Plants</i>
+          <ul>
+            <li>
+              <strong>Lake Sabastian Bowler Lily:</strong> This lily is known to
+              cover large sections of the coast of Lake Sabastian, blooming all
+              at once during early summer. After they bloom the flowers and
+              their pads die and return the following summer.
+            </li>
+          </ul>
+        </div>
+
+        <button class="h2collapsible" onclick="toggleSection('animals')">
+          Animals
+        </button>
+        <div class="content" id="animals">
+          <p>
+            Similar to the rest of Maldantis, many of the regions native magical
+            and unique beasts have been hunted to near extinction with most of
+            the animals left are more common native or invasive subtypes.
+          </p>
+          <i>Local Animals</i>
+          <ul>
+            <li>
+              <strong>Lake Sabastian Rock Trout:</strong> This trout is farmed
+              and fished extensively in the region. It is seen as a local
+              delicacy though many outsiders find the taste of the fish to be
+              dry and grainy.
+            </li>
+          </ul>
+        </div>
+
+        <button class="h2collapsible" onclick="toggleSection('soil')">
+          Soil
+        </button>
+        <div class="content" id="soil">
+          <p>Clay Loam.</p>
+        </div>
+      </div>
+      <img src="../maps/aristeium.png" />
+    </div>
+    <script>
+      function toggleSection(sectionId) {
+        var content = document.getElementById(sectionId);
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
