@@ -76,12 +76,26 @@ async function deleteData(id) {
 }
 
 async function sellData(option) {
+    var data = await getData();
+    var input = $("#sellInput").val().replace(/\s+/g, '');;
     if (option == "sell") {
-        var data = await getData();
-        data.coins += parseFloat($("#sellInput").val());
+        data.coins += parseFloat(input);
         
         await setData(data);
         await deleteData(sellId);
+    } else if (option == "some") {
+        console.log(input);
+        var split = input.split(",");
+        console.log(split);
+        if (split[1] == undefined) {
+            alert("undef");
+        } else {
+            data.coins += parseFloat(split[0]);
+            console.log(sellId);
+            data.inventory[sellId].cost = parseFloat(split[1]);
+
+            await setData(data);
+        }
     }
     $("#sellInput").val("");
     $("#sellDialog").removeClass("show").addClass("hide");

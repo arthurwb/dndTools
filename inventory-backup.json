@@ -1,13 +1,8 @@
 {
-  "coins": 2331,
-  "expNet": 8448.5,
-  "currentNet": 8448.5,
+  "coins": 6951,
+  "expNet": 10841,
+  "currentNet": 10841,
   "inventory": [
-    {
-      "id": 5,
-      "item": "Tiny Swords",
-      "cost": 7.5
-    },
     {
       "id": 6,
       "item": "Cart",
@@ -39,11 +34,6 @@
       "cost": 0
     },
     {
-      "id": 12,
-      "item": "Maslow's Scalpel",
-      "cost": 750
-    },
-    {
       "id": 14,
       "item": "Confession Documents (sell to library)",
       "cost": 150
@@ -52,16 +42,6 @@
       "id": 16,
       "item": "Potion of healing",
       "cost": 250
-    },
-    {
-      "id": 17,
-      "item": "Lab equipment",
-      "cost": 350
-    },
-    {
-      "id": 18,
-      "item": "Arcane Tomes",
-      "cost": 450
     },
     {
       "id": 21,
@@ -74,9 +54,14 @@
       "cost": 370
     },
     {
-      "id": 23,
-      "item": "Relics",
-      "cost": 1000
+      "id": 24,
+      "item": "Lab Equipment",
+      "cost": 330
+    },
+    {
+      "id": 25,
+      "item": "Turbo Bottle Opener",
+      "cost": 0
     }
   ]
 }
