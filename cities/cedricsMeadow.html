@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>City: Aristeium</title>
+    <link rel="stylesheet" href="../css/citycss.css" />
+</head>
+
+<body>
+    <div class="container">
+        <a href="../citieslist.html" class="go-back">GO BACK</a><br />
+        <button class="h1collapsible" onclick="toggleSection('town')">
+            Town: Cedric's Meadow
+        </button>
+        <div class="content" id="town">
+            <button class="h2collapsible" onclick="toggleSection('population')">
+                Population
+            </button>
+            <div class="content" id="population">
+                <p>3,500 - Town</p>
+                <ul>
+                    <li>65% - Human</li>
+                    <li>20% - Elven</li>
+                    <li>5% - Half-Elven</li>
+                    <li>5% - Dwarven</li>
+                    <li>5% - Other</li>
+                </ul>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('econ-ac')">
+                Economic Activities
+            </button>
+            <div class="content" id="econ-ac">
+                <p>
+                    Being an outlier in mainland Hogreve in a largely open centralized plains-land
+                    with a large river running nearby makes this an agricultural hotspot.
+                    Much of the income of the town and the surrounding villages is taken up
+                    entirely by farming though there is a sizeable market for retail goods,
+                    mostly just to fuel the agricultural heart.
+                </p>
+                <p>
+                    Most of the goods produced here are sent to Barpool and other coastal
+                    settlements that are not able to sustain themselves on their own farms.
+                </p>
+                <i>Economic Breakdown</i>
+                <ul>
+                    <li>Agriculture</li>
+                    <li>Trade</li>
+                    <li>Lumber</li>
+                    <li>River Work</li>
+                </ul>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('language')">
+                Language
+            </button>
+            <div class="content" id="language">
+                <p>
+                    All of those that live in Cedric's Meadow know and speak common regularly,
+                    though many take up Elven as a second language to assist in trade and to
+                    converse with the sizeable population of elves which live in the region.
+                </p>
+                <p>
+                    Surprisingly, Dwarvish is also popular and many will take words from the
+                    language and use them regularly without taking on the language for common speech.
+                </p>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('religions')">
+                Religions
+            </button>
+            <div class="content" id="religions">
+                <p>
+                    Due to their proximity to Maldantis the town and region has a significant
+                    number of members of the Church of Taro, though due to the fact that they
+                    are not in the demographical region or in a kingdom which cites the religion
+                    as their national religion, most people are Orthodox Aeinists.
+                    Aeinists outnumber Tarans 2:1.
+                </p>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('political-systems')">
+                Political Systems
+            </button>
+            <div class="content" id="political-systems">
+                <p>
+                    Cedric's Meadow sits on the outskirts of the large economic and governmental
+                    region of Barpool meaning that it falls under the governance of the East
+                    Barpool Company. It is a very important town both as a bread-basket and as
+                    a defensive position since it sits in the valley between Barpool and Maldantis.
+                </p>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('settlements')">
+                Settlements
+            </button>
+            <div class="content" id="settlements">
+                <ul>
+                    <li>
+                        <strong>Fort Vinning:</strong> A large fork and surrounding Hamlet which
+                        was, at one point, a major choke point in the various wars between Barpool
+                        and Maldantis. Still a heavily guarded and fortified location.
+                    </li>
+                </ul>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('food')">
+                Food
+            </button>
+            <div class="content" id="food">
+                <p>
+                    Being a ways away from the coast, Cedric's Meadow does not share the culinary
+                    pallet of the rest of the nation, instead it relied much more on staple crops
+                    and more simple stews and dishes constructed from what is readily available.
+                </p>
+            </div>
+        </div>
+        <button class="h1collapsible" onclick="toggleSection('region')">
+            Region
+        </button>
+        <div class="content" id="region">
+            <button class="h2collapsible" onclick="toggleSection('landforms')">
+                Landforms
+            </button>
+            <div class="content" id="landforms">
+                <p>
+                    <strong>Biome:</strong> Temperate Broadleaf Forest
+                </p>
+                <p>
+                    Much of the town is surrounded by large expanses of forest, with the region
+                    adjacent to Erala Tell being mostly cleared for lumber and for road construction.
+                    The towns exist in a lowland between two larger regions to the north and south
+                    which hold the northern tip of the Itruskin Forest and the bulk of the Ir'anya
+                    Forest to the north.
+                </p>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('rock-minerals')">
+                Rock & Minerals
+            </button>
+            <div class="content" id="rock-minerals">
+                <p>
+                    The region does not specialize in mining but there are some small iron and coal
+                    mines scattered along Erala Tell.
+                </p>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('water')">
+                Water
+            </button>
+            <div class="content" id="water">
+                <p>
+                    Cedric's Meadow was built directly adjacent to Erala Tell, a major waterway
+                    which leads to Barpool. The river is used extensively as a means of transporting goods.
+                </p>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('weather-climate')">
+                Weather & Climate
+            </button>
+            <div class="content" id="weather-climate">
+                <p>
+                    <strong>Climate:</strong> Cool Temperate Moist
+                </p>
+                <p>
+                    Lying in a low valley near a river, the rains from the coast are often funneled
+                    into the region, making it very wet, which promotes farming.
+                </p>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('plants')">
+                Plants
+            </button>
+            <div class="content" id="plants">
+                <p>
+                    Due to the moistness of the region, the forests host large trees and ample moss.
+                </p>
+                <i>local plants</i>
+                <ul>
+                    <li>
+                        <strong>Willow Moss:</strong> Long drooping moss which hangs from trees,
+                        giving them a distinct willow tree look.
+                    </li>
+                </ul>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('animals')">
+                Animals
+            </button>
+            <div class="content" id="animals">
+                <p>
+                    The region is a hotspot for interesting creatures. The forests and hills create
+                    ample space for larger monsters and beasts to hide and hunt and with limited
+                    hunting in the regions further into the forests, they have been able to flourish
+                    for thousands of years.
+                </p>
+                <i>local animals</i>
+                <ul>
+                    <li>
+                        <strong>Guildman's Owlbear:</strong> One of the few locations in the world
+                        where the Owlbear population is stable and they are not threatened.
+                        This is because this family of Owlbear do not have the solitary instincts
+                        of their cousins and instead form parliaments of Owlbears averaging around
+                        6 adults with 3-4 young.
+                    </li>
+                </ul>
+            </div>
+
+            <button class="h2collapsible" onclick="toggleSection('soil')">
+                Soil
+            </button>
+            <div class="content" id="soil">
+                <p>Loam.</p>
+            </div>
+        </div>
+        <a href="../maps/cedricsMeadow.PNG" target="_blank"><img src="../maps/cedricsMeadow.PNG"></a>
+    </div>
+    <script>
+        function toggleSection(sectionId) {
+            var content = document.getElementById(sectionId);
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>
