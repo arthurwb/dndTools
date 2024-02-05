@@ -88,7 +88,7 @@ async function sellData(option) {
         var split = input.split(",");
         console.log(split);
         if (split[1] == undefined) {
-            alert("undef");
+            snackBar("Incorrect input format, use 'sell price, remaining amount'");
         } else {
             data.coins += parseFloat(split[0]);
             console.log(sellId);
@@ -210,7 +210,7 @@ function snackBar(text) {
     var snackbar = $("#snackbar");
     snackbar.text(text);
     snackbar.addClass("show");
-    setTimeout(function(){ snackbar.removeClass("show"); }, 3000);
+    setTimeout(function(){ snackbar.removeClass("show"); }, 8000);
 }
 
 function switchDatabase() {
