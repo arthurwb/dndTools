@@ -5,6 +5,7 @@ const databaseDic = {
 var sellId = 0;
 var currentDatabase = "brooks";
 var jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.brooks}`;
+var yipee = document.getElementById("yipee");
 
 async function saveData() {
     try {
@@ -83,6 +84,7 @@ async function sellData(option) {
         
         await setData(data);
         await deleteData(sellId);
+        yipee.play();
     } else if (option == "some") {
         console.log(input);
         var split = input.split(",");
@@ -95,6 +97,7 @@ async function sellData(option) {
             data.inventory[sellId].cost = parseFloat(split[1]);
 
             await setData(data);
+            yipee.play();
         }
     }
     $("#sellInput").val("");
