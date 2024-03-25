@@ -92,7 +92,7 @@ async function deleteFill(id) {
 async function sellData(option) {
     var data = await getData();
     var input = $("#sellInput").val().replace(/\s+/g, '');;
-    if (option == "sell") {
+    if (option == "sell" && $("#sellInput").val() != "") {
         var data = await getData();
         var sellAmt = parseFloat($("#sellInput").val());
         data.coins += sellAmt;
@@ -115,6 +115,8 @@ async function sellData(option) {
             await setData(data);
             playSound();
         }
+    } else {
+        if (option != "cancel") { snackBar("incorrect input"); }
     }
     $("#sellInput").val("");
     $("#sellDialog").removeClass("show").addClass("hide");
@@ -190,7 +192,7 @@ async function editExp(option) {
     var input = $("#expUserInput").val();
     var data = await getData();
     
-    if (/^\d+$/.test(input) || input == "") {
+    if (/^\d+$/.test(input)) {
         input = parseInt(input);
         switch (option) {
             case 'add':
@@ -198,8 +200,6 @@ async function editExp(option) {
                 break;
             case 'sub':
                 data.expNet -= input;
-                break;
-            case 'cancel':
                 break;
             default:
                 break;
