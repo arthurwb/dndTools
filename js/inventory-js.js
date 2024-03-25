@@ -4,7 +4,8 @@ const databaseDic = {
 };
 var sellId = 0;
 var currentDatabase = "brooks";
-var jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.jesse}`;
+var jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.brooks}`;
+var yipee = document.getElementById("yipee");
 
 async function saveData() {
     try {
@@ -81,6 +82,8 @@ async function deleteFill(id) {
 }
 
 async function sellData(option) {
+    var data = await getData();
+    var input = $("#sellInput").val().replace(/\s+/g, '');;
     if (option == "sell") {
         var data = await getData();
         var sellAmt = parseFloat($("#sellInput").val());
@@ -89,6 +92,21 @@ async function sellData(option) {
         await testExpNet(data, sellAmt);
         await setData(data);
         await deleteData(sellId);
+        yipee.play();
+    } else if (option == "some") {
+        console.log(input);
+        var split = input.split(",");
+        console.log(split);
+        if (split[1] == undefined) {
+            snackBar("Incorrect input format, use 'sell price, remaining amount'");
+        } else {
+            data.coins += parseFloat(split[0]);
+            console.log(sellId);
+            data.inventory[sellId].cost = parseFloat(split[1]);
+
+            await setData(data);
+            yipee.play();
+        }
     }
     $("#sellInput").val("");
     $("#sellDialog").removeClass("show").addClass("hide");
@@ -203,7 +221,7 @@ function snackBar(text) {
     var snackbar = $("#snackbar");
     snackbar.text(text);
     snackbar.addClass("show");
-    setTimeout(function(){ snackbar.removeClass("show"); }, 3000);
+    setTimeout(function(){ snackbar.removeClass("show"); }, 8000);
 }
 
 function switchDatabase() {
