@@ -4,7 +4,7 @@ const databaseDic = {
 };
 var sellId = 0;
 var currentDatabase = "brooks";
-var jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.jesse}`;
+var jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.brooks}`;
 var yipee = document.getElementById("yipee");
 var auughhh = document.getElementById("auughhh");
 
