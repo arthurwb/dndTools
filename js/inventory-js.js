@@ -1,10 +1,10 @@
 const databaseDic = {
     "brooks": "1182735710951432192",
-    "jesse": "1186691754790608896"
+    "jesse": "1219354949451636736"
 };
 var sellId = 0;
 var currentDatabase = "brooks";
-var jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.brooks}`;
+var jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.jesse}`;
 
 async function saveData() {
     try {
@@ -36,6 +36,7 @@ async function saveData() {
         
         $("#itemName").val("");
         $("#itemCost").val("");
+        await testExpNet(fullData, cost);
         await fillPage();
     } catch (error) {
         snackBar("Input Error");
@@ -43,22 +44,22 @@ async function saveData() {
     }
 }
 
-async function testExpNet () {
-    var data = await getData();
-    if (data.currentNet > data.expNet) {
-        data.expNet = data.currentNet;
-        await setData(data);
-        await fillPage();
-    }
+async function testExpNet (data, coin) {
+    console.log("expNet + : " + coin);
+    console.log("expNet = :" + data.expNet);
+    data.expNet += coin;
+    console.log("expNet new = :" + data.expNet);
+    await setData(data);
 }
 
 async function addCoins() {
-    var fullData = await getData();
-    var coins = parseFloat(fullData.coins.toFixed(3));
-    coins += parseFloat($("#coinNum").val());
-    fullData.coins = coins;
+    var data = await getData();
+    var coins = parseFloat(data.coins.toFixed(3));
+    var preCoins = parseFloat($("#coinNum").val());
+    coins += preCoins;
+    data.coins = coins;
 
-    await setData(fullData);
+    preCoins > 0 ? await testExpNet(data, preCoins) : await setData(data);
 
     $("#coinNum").val("");
     await fillPage();
@@ -67,19 +68,25 @@ async function addCoins() {
 async function deleteData(id) {
     id = parseInt(id);
     var fullData = await getData();
+    fullData.expNet -= fullData.inventory[id].cost;
     fullData.inventory.splice(id, 1);
     var item = fullData.inventory.find(item=>item.id===sellId);
     console.log(item);
     await setData(fullData);
+}
 
+async function deleteFill(id) {
+    await deleteData(id);
     await fillPage();
 }
 
 async function sellData(option) {
     if (option == "sell") {
         var data = await getData();
-        data.coins += parseFloat($("#sellInput").val());
+        var sellAmt = parseFloat($("#sellInput").val());
+        data.coins += sellAmt;
         
+        await testExpNet(data, sellAmt);
         await setData(data);
         await deleteData(sellId);
     }
@@ -121,12 +128,13 @@ async function fillPage() {
         netWorth += item.cost;
         var itemCost = formatNum(item.cost);
         itemCost = `${itemCost[0]}g, ${itemCost[1]}s`
-        $("#output").append(`<div class="num" id=${id}><p><b>${item.item}: </b>${itemCost}  <button onclick="deleteData(${id})">Delete</button> <button onclick="showSellDialog(${id})">Sell</button></p><div>`);
+        $("#output").append(`<div class="num" id=${id}><p><b>${item.item}: </b>${itemCost}  <button onclick="deleteFill(${id})">Delete</button> <button onclick="showSellDialog(${id})">Sell</button></p><div>`);
         id++;
     });
     
     var coins = data.coins;
     var expNetWorth = data.expNet;
+    console.log(expNetWorth);
     netWorth += coins;
     data.currentNet = netWorth;
 
@@ -141,7 +149,6 @@ async function fillPage() {
     $("#netWorth").html(`<div>${netWorth[0]}g, ${netWorth[1]}s</div>`);
 
     await setData(data);
-    await testExpNet();
 }
 
 function showExpDialog() {
