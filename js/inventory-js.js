@@ -6,6 +6,7 @@ var sellId = 0;
 var currentDatabase = "brooks";
 var jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic.brooks}`;
 var yipee = document.getElementById("yipee");
+var auughhh = document.getElementById("auughhh");
 
 async function saveData() {
     try {
@@ -49,18 +50,25 @@ async function testExpNet (data, coin) {
     console.log("expNet + : " + coin);
     console.log("expNet = :" + data.expNet);
     data.expNet += coin;
+    playSound();
     console.log("expNet new = :" + data.expNet);
     await setData(data);
 }
 
 async function addCoins() {
-    var data = await getData();
-    var coins = parseFloat(data.coins.toFixed(3));
     var preCoins = parseFloat($("#coinNum").val());
-    coins += preCoins;
-    data.coins = coins;
 
-    preCoins > 0 ? await testExpNet(data, preCoins) : await setData(data);
+    if ($("#coinNum").val() != "") {
+        var data = await getData();
+
+        var coins = parseFloat(data.coins.toFixed(3));
+        coins += preCoins;
+        data.coins = coins;
+
+        preCoins > 0 ? await testExpNet(data, preCoins) : await setData(data);
+    } else {
+        snackBar("invalid input");
+    }
 
     $("#coinNum").val("");
     await fillPage();
@@ -84,7 +92,7 @@ async function deleteFill(id) {
 async function sellData(option) {
     var data = await getData();
     var input = $("#sellInput").val().replace(/\s+/g, '');;
-    if (option == "sell") {
+    if (option == "sell" && $("#sellInput").val() != "") {
         var data = await getData();
         var sellAmt = parseFloat($("#sellInput").val());
         data.coins += sellAmt;
@@ -92,7 +100,7 @@ async function sellData(option) {
         await testExpNet(data, sellAmt);
         await setData(data);
         await deleteData(sellId);
-        yipee.play();
+        playSound();
     } else if (option == "some") {
         console.log(input);
         var split = input.split(",");
@@ -105,8 +113,10 @@ async function sellData(option) {
             data.inventory[sellId].cost = parseFloat(split[1]);
 
             await setData(data);
-            yipee.play();
+            playSound();
         }
+    } else {
+        if (option != "cancel") { snackBar("incorrect input"); }
     }
     $("#sellInput").val("");
     $("#sellDialog").removeClass("show").addClass("hide");
@@ -182,7 +192,7 @@ async function editExp(option) {
     var input = $("#expUserInput").val();
     var data = await getData();
     
-    if (/^\d+$/.test(input) || input == "") {
+    if (/^\d+$/.test(input)) {
         input = parseInt(input);
         switch (option) {
             case 'add':
@@ -190,8 +200,6 @@ async function editExp(option) {
                 break;
             case 'sub':
                 data.expNet -= input;
-                break;
-            case 'cancel':
                 break;
             default:
                 break;
@@ -222,6 +230,11 @@ function snackBar(text) {
     snackbar.text(text);
     snackbar.addClass("show");
     setTimeout(function(){ snackbar.removeClass("show"); }, 8000);
+}
+
+function playSound() {
+    var num = Math.floor(Math.random() * 5) + 1;
+    num == 1 ? auughhh.play() : yipee.play();
 }
 
 function switchDatabase() {
