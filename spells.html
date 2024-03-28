@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spell Search</title>
+<style>
+    /* Basic styling for the page */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    option {
+        color: black;
+        background-color: rgb(242, 242, 242);
+        padding: 1px;
+    }
+    option:hover {
+        background-color: rgb(211, 211, 211);
+    }
+    #spell-info {
+        display: none; /* Hide spell info by default */
+    }
+    #spell-info h2 {
+        margin-top: 0;
+    }
+</style>
+</head>
+<body>
+<h1>Spell Search</h1>
+<input type="text" id="spell-input" placeholder="Enter spell name...">
+<div id="spell-dropdown"></div>
+<div id="spell-info">
+    <h2 id="spell-name"></h2>
+    <p><strong>Level:</strong> <span id="spell-level"></span></p>
+    <p><strong>School:</strong> <span id="spell-school"></span></p>
+    <p><strong>Range:</strong> <span id="spell-range"></span></p>
+    <p><strong>Components:</strong> <span id="spell-components"></span></p>
+    <p><strong>Duration:</strong> <span id="spell-duration"></span></p>
+    <div id="spell-description"></div>
+</div>
+
+<script>
+    // Function to search for a spell
+    async function searchSpell() {
+        const input = document.getElementById('spell-input').value.trim().toLowerCase();
+        const spell = spellData.find(s => s.name.toLowerCase() === input);
+        if (spell) {
+            document.getElementById('spell-name').textContent = spell.name;
+            document.getElementById('spell-level').textContent = spell.level;
+            document.getElementById('spell-school').textContent = spell.school;
+
+            if (spell.range.distance.ammount == undefined) {
+                document.getElementById('spell-range').textContent = spell.range.distance.type;
+            } else {
+                document.getElementById('spell-range').textContent = spell.range.distance.amount + ' ' + spell.range.distance.type;
+            }
+
+            document.getElementById('spell-components').textContent = (spell.components.v ? 'V' : '') + (spell.components.v && spell.components.s ? ', ' : '') + (spell.components.s ? 'S' : '');
+
+            if (spell.duration[0].type == "instant") {
+                document.getElementById('spell-duration').textContent = "instant";
+            } else {
+                document.getElementById('spell-duration').textContent = spell.duration[0].duration.amount + ' ' + spell.duration[0].duration.type;
+            }
+            
+            // Replace new lines with <br> tags for proper line breaks
+            let description = "";
+            spell.entries.forEach(element => {
+                description += "<p>&emsp;" + element + "</p>";
+            });
+            document.getElementById('spell-description').innerHTML = formatText(description);
+            
+            document.getElementById('spell-info').style.display = 'block';
+        } else {
+            alert('Spell not found!');
+        }
+    }
+
+    function formatText(text) {
+        // Regular expression to match {@damage ...} and {@dice ...} patterns
+        const regex = /{@damage (\d+d\d+)}|{@dice (\d+d\d+)}|{@skill\s+(\S+)}|{@creature\s+(\S+)}/g;
+
+        // Replace {@damage ...} and {@dice ...} patterns with formatted text
+        return text.replace(regex, (match, damageDice, dice, skill, creature) => {
+            if (damageDice) {
+                // If {@damage ...} pattern is found, format in red text
+                return `<span style="color: red;">${damageDice}</span>`;
+            } else if (dice) {
+                // If {@dice ...} pattern is found, format in blue text
+                return `<span style="color: blue;">${dice}</span>`;
+            } else if (skill) {
+                return `<span style="color: green;">${skill}</span>`;
+            } else if (creature) {
+                return `<span style="color: purple;">${creature}</span>`;
+            }
+        });
+    }
+
+    // Function to handle spell data
+    function handleSpellData(data) {
+        // Store the spell data in a global variable or object
+        console.log(data);
+        window.spellData = data.flat(); // Flatten the array of arrays into a single array
+    }
+
+    // Fetch spell data when the page loads
+    window.addEventListener('load', () => {
+        // Array to store the fetched spell data
+        let spellDataArray = [];
+
+        // Fetch both spell data concurrently
+        Promise.all([
+            fetch('https://5e.tools/data/spells/spells-phb.json').then(response => response.json()),
+            fetch('https://5e.tools/data/spells/spells-aag.json').then(response => response.json()),
+            fetch('https://5e.tools/data/spells/spells-tce.json').then(response => response.json()),
+            fetch('https://5e.tools/data/spells/spells-xge.json').then(response => response.json())
+        ])
+        .then(data => {
+            // Push each spell data array into the spellDataArray
+            spellDataArray.push(data[0].spell, data[1].spell, data[2].spell, data[3].spell);
+            // Call handleSpellData with the spellDataArray
+            handleSpellData(spellDataArray);
+        })
+        .catch(error => console.error('Error fetching spell data:', error));
+    });
+
+    // Function to filter spell names based on user input
+    function filterSpellNames(input) {
+        const filteredSpells = window.spellData.filter(spell => spell.name.toLowerCase().startsWith(input.toLowerCase()));
+        return filteredSpells.map(spell => spell.name);
+    }
+
+    // Function to update the dropdown list
+    function updateDropdownList(input) {
+        const dropdown = document.getElementById('spell-dropdown');
+        dropdown.innerHTML = ''; // Clear the dropdown list
+
+        const filteredNames = filterSpellNames(input);
+        filteredNames.forEach(name => {
+            const option = document.createElement('div');
+            option.innerHTML = `<option onclick="fillInput(&quot;${name}&quot;)">${name}</option>`;
+            dropdown.appendChild(option);
+        });
+    }
+
+    function fillInput(option) {
+        document.getElementById("spell-input").value = option;
+        searchSpell();
+    }
+
+    // Event listener for text input
+    document.getElementById('spell-input').addEventListener('input', function(event) {
+        const input = event.target.value.trim();
+        console.log(input);
+        updateDropdownList(input);
+    });
+
+    // Event listener for the search input
+    document.getElementById('spell-input').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            searchSpell();
+        }
+    });
+</script>
+</body>
+</html>
