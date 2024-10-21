@@ -1,0 +1,162 @@
+:root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --off-white: #eeeeee;
+    --background: #292929;
+    --primary-ultradark: #14001b;
+    --primary-dark: #6a0094;
+    --primary: #b700ff;
+    --primary-light: #d15eff;
+    --primary-ultralight: #f8e5ff;
+    --warning: #db3458;
+}
+
+body {
+    background-color: var(--background);
+    font-family: "Fira Code", monospace;
+}
+
+button {
+    background-color: var(--white);
+    margin: 5px;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: solid 2px var(--black);
+} button:hover {
+    background-color: var(--primary-ultralight);
+}
+
+input {
+    background-color: var(--white);
+    margin: 5px;
+    border-radius: 5px;
+    border: solid 2px;
+} input:hover {
+    background-color: var(--primary-ultralight);
+}
+
+.red {
+    color: var(--warning);
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.vertical-center {
+    vertical-align: middle;
+}
+
+.width-full {
+    width: fit-content;
+}
+
+.page {
+    height: 100vh;
+    padding-top: 10px;
+}
+
+.container {
+    top: 0;
+    left: 0;
+    z-index: 999;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 80%;
+    height: auto;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 5px;
+    border: solid 5px var(--primary-ultradark);
+}
+
+.items-container {
+    padding: 15px;
+    border-radius: 5px;
+    border: solid black;
+}
+
+.item-display {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid var(--primary-dark);
+}
+
+.item-icon {
+    vertical-align: middle;
+    text-align: left;
+    margin-right: 10px;
+    padding: 2px;
+    border-radius: 15px;
+    border: solid 2px var(--black);
+}
+
+.dialogue-container {
+    background-color: rgba(211, 169, 199, 0.63);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    padding: 15px;
+    border-radius: 10px;
+    border: solid 2px var(--primary-ultradark);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.dialogue-content {
+    /* This ensures content inside is not affected by the blur */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    color: var(--black);
+    font-weight: bold;
+    position: relative;
+}
+
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: var(--primary-ultradark); /* Black background color */
+    color: var(--white); /* White text color */
+    border-radius: 5px;
+    border: solid var(--primary-dark);
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.icon-select {
+    font-family: 'FontAwesome', 'Second Font name';
+    padding: 5px;
+    border-radius: 5px;
+    border: solid var(--black);
+}
