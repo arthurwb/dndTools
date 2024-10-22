@@ -3,7 +3,10 @@ const databaseDic = {
     "brooks": "1297992177228308480"
 };
 let sellId = 0;
-let jsonBlob = `https://jsonblob.com/api/jsonBlob/${document.cookie.split(";").find((row) => row.startsWith("database="))?.split("=")[1] || databaseDic.admin}`;
+currentDatabase = document.cookie.split(";").find((row) => row.startsWith("database="))?.split("=")[1];
+console.log(currentDatabase);
+console.log(document.cookie);
+let jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic[currentDatabase] || databaseDic.admin}`;
 
 // ----------- Util ----------
 // sample input 
