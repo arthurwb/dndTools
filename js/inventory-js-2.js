@@ -4,8 +4,6 @@ const databaseDic = {
 };
 let sellId = 0;
 currentDatabase = document.cookie.split(";").find((row) => row.startsWith("database="))?.split("=")[1];
-console.log(currentDatabase);
-console.log(document.cookie);
 let jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic[currentDatabase] || databaseDic.admin}`;
 
 // ----------- Util ----------
@@ -329,6 +327,8 @@ async function fillPage() {
             rowCount++;
         }
     });
+
+    $("#databases").val(currentDatabase.charAt(0).toUpperCase() + string.slice(1);)
 
     $("#total").text(generateTotal(items));
 }
