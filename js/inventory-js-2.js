@@ -73,6 +73,21 @@ async function changeDatabase() {
     snackBar(`Switched to database: ${newDatabase}`);
 }
 
+async function modCoins(type) {
+    let coins = convert2Coin($("#coins").val());
+    let data = await getAll();
+    if (type == "+") {
+        data.coins += coins;
+    } else if (type == "-") {
+        data.coins -= coins;
+    } else {
+        snackBar("Error in coins input");
+    }
+    $("#coins").val("");
+    putItems(data);
+    fillPage();
+}
+
 // ---------- UI ----------
 function snackBar(text) {
     let snackbar = $("#snackbar");
@@ -287,18 +302,21 @@ async function createItem() {
 }
 
 // ---------- Page Functionality ----------
-function generateTotal(items) {
+function generateTotal(data) {
     let total = 0;
-    items.forEach(item => {
+    data.items.forEach(item => {
         total += item.itemPrice;
     });
+
+    total += data.coins;
 
     return convert4Coin(total);
 }
 
 async function fillPage() {
     const container = $("#itemsContainer");
-    let items = await getItems();
+    let data = await getAll();
+    let items = data.items;
     let itemCount = 0;
     let rowCount = 0;
 
@@ -334,7 +352,10 @@ async function fillPage() {
         }
     });
 
-    $("#total").text(generateTotal(items));
+    console.log(data.coins);
+    $("#coinsTotal").text(convert4Coin(data.coins));
+
+    $("#total").text(generateTotal(data));
 }
 
 

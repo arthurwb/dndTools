@@ -168,6 +168,17 @@ input {
     border: solid var(--black);
 }
 
+.coins-container {
+}
+
+.coins-input {
+    margin-left: auto;
+    margin-right: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 25%;
+}
+
 /* -=-=-=-=-=-=-=- Phone styling -=-=-=-=-=-=-=-=- */
 @media only screen and (max-width: 768px) {
     .item-display {

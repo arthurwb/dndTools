@@ -37,21 +37,34 @@
                     <div id="total"></div>
                 </div>
             </div>
-            <div class="row center">
-                <div class="center">
-                    <button class="center" onclick="toggleItemForm()">Add Item</button>
+            <div class="row center coins-container">
+                <div>
+                    <h4>Coins</h4>
                 </div>
+                <div>
+                    <button onclick="modCoins('-')">-</button>
+                    <input class="coins-input" type="text" id="coins"/>
+                    <button onclick="modCoins('+')">+</button>
+                </div>
+                <div id="coinsTotal">Loading...</div>
             </div>
-            <div class="items-container" id="itemsContainer">
-                <div class="row align-items-start" id="col1">
-                    <div class="col item-display">
-                        <div class="material-icons item-icon">info</div>
+            <div class="items-container">
+                <div class="row center">
+                    <div class="center">
+                        <button class="center" onclick="toggleItemForm()">Add Item</button>
                     </div>
-                    <div class="col item-display">
-                        <div class="material-icons vertical-center">lock</div>
-                    </div>
-                    <div class="col item-display">
-                        <div class="material-icons vertical-center">build</div>
+                </div>
+                <div id="itemsContainer">
+                    <div class="row align-items-start" id="col1">
+                        <div class="col item-display">
+                            <div class="material-icons item-icon">info</div>
+                        </div>
+                        <div class="col item-display">
+                            <div class="material-icons vertical-center">lock</div>
+                        </div>
+                        <div class="col item-display">
+                            <div class="material-icons vertical-center">build</div>
+                        </div>
                     </div>
                 </div>
             </div>
