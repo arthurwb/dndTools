@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Dungeons and Dragons Timer</title>
+    <meta name="description" content="Do not click this, it is a very funny website, haha yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/inventory.css" />
+</head>
+
+<body id="background">
+    <div class="page">
+        <div class="container minHight-500">
+            <div class="row">
+                <div class="col">
+                    <h1>Inventory</h1>
+                    <div>
+                        <span>Current Database: </span>
+                        <select onchange="changeDatabase()" name="databases" id="databases">
+                            <option value="admin">Admin</option>
+                            <option value="brooks">Brooks</option>
+                            <option value="jesse">Jesse</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col right">
+                    <h5>TOTAL</h5>
+                    <div id="total"></div>
+                </div>
+            </div>
+            <div class="row center">
+                <div class="center">
+                    <button class="center" onclick="toggleItemForm()">Add Item</button>
+                </div>
+            </div>
+            <div class="items-container" id="itemsContainer">
+                <div class="row align-items-start" id="col1">
+                    <div class="col item-display">
+                        <div class="material-icons item-icon">info</div>
+                    </div>
+                    <div class="col item-display">
+                        <div class="material-icons vertical-center">lock</div>
+                    </div>
+                    <div class="col item-display">
+                        <div class="material-icons vertical-center">build</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="dialogue-container hide" id="itemForm">
+            <div class="dialogue-content">
+                <p>Enter Item Details:</p>
+                <div>
+                    Name: <input type="text" id="formName"/><br>
+                    Value: <input type="text" id="formValue"/><br>
+                    Description: <input type="text" id="formDescription"/><br>
+                    <span>Icon: </span>
+                    <select onchange="updateIconPreview()" class="icon-select" id="iconSelect">
+                        <option>Hazard</option>
+                        <option>Religious</option>
+                        <option>Weapon</option>
+                        <option>Compass</option>
+                        <option>Food</option>
+                        <option>Drink</option>
+                        <option>Potion</option>
+                        <option>Animal</option>
+                        <option>Gems</option>
+                        <option>Wearable</option>
+                        <option>Magic</option>
+                        <option>Misc</option>
+                    </select>
+                    <span id="iconPreview"><image class="icon-preview" src="images/icons/Hazard.svg"></image></span>
+                    <div>
+                        <button onclick="createItem()">Submit</button>
+                        <button onclick="toggleItemForm()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="dialogue-container hide" id="deleteConfirmation">
+        </div>
+    </div>
+    <div id="snackbar"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/inventory-js-2.js"></script>
+</body>
+
+</html>
