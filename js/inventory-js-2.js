@@ -141,6 +141,11 @@ function updateIconPreview() {
                 <image class="icon-preview" id="compass-solid" src="images/icons/Compass.svg"></image>
             `);
             break;
+        case "Weapon":
+            iconPreview.html(`
+                <image class="icon-preview" id="gun-solid" src="images/icons/Weapon.svg"></image>
+            `);
+            break;
         case "Food":
             iconPreview.html(`
                 <image class="icon-preview" id="drumstick-bite-solid" src="images/icons/Food.svg"></image>
