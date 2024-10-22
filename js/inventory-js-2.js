@@ -328,7 +328,7 @@ async function fillPage() {
         }
     });
 
-    $("#databases").val(currentDatabase.charAt(0).toUpperCase() + string.slice(1);)
+    $("#databases").val(currentDatabase.charAt(0).toUpperCase() + string.slice(1));
 
     $("#total").text(generateTotal(items));
 }
