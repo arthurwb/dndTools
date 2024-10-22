@@ -328,12 +328,12 @@ async function fillPage() {
         }
     });
 
-    $("#databases").val(currentDatabase.charAt(0).toUpperCase() + string.slice(1)).change();
-
     $("#total").text(generateTotal(items));
 }
 
 
 window.onload = async function() {
+    console.log(currentDatabase.charAt(0).toUpperCase() + string.slice(1));
+    $("#databases").val(currentDatabase.charAt(0).toUpperCase() + string.slice(1)).change();
     await fillPage();
 }
