@@ -99,10 +99,9 @@ input {
 .item-icon {
     vertical-align: middle;
     text-align: left;
+    width: 40px;
     margin-right: 10px;
     padding: 2px;
-    border-radius: 15px;
-    border: solid 2px var(--black);
 }
 
 .dialogue-container {
@@ -156,6 +155,14 @@ input {
 
 .icon-select {
     font-family: 'FontAwesome', 'Second Font name';
+    padding: 5px;
+    border-radius: 5px;
+    border: solid var(--black);
+}
+
+.icon-preview {
+    width: 60px;
+    height: auto;
     padding: 5px;
     border-radius: 5px;
     border: solid var(--black);

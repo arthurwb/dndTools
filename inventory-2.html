@@ -65,7 +65,7 @@
                     Value: <input type="text" id="formValue"/><br>
                     Description: <input type="text" id="formDescription"/><br>
                     <span>Icon: </span>
-                    <select class="icon-select">
+                    <select onchange="updateIconPreview()" class="icon-select" id="iconSelect">
                         <option>Hazard</option>
                         <option>Religious</option>
                         <option>Compass</option>
@@ -78,8 +78,11 @@
                         <option>Magic</option>
                         <option>Misc</option>
                     </select>
-                    <button onclick="createItem()">Submit</button>
-                    <button onclick="toggleItemForm()">Cancel</button>
+                    <span id="iconPreview"><image class="icon-preview" src="images/icons/Hazard.svg"></image></span>
+                    <div>
+                        <button onclick="createItem()">Submit</button>
+                        <button onclick="toggleItemForm()">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>

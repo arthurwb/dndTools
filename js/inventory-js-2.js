@@ -38,8 +38,6 @@ function convert2Coin(input) {
                 convertValue += parseInt(value.slice(0, -1)) * 1000;
                 break;
             default:
-                // This case should never happen due to the regex check
-                snackBar("Unknown error occurred!");
                 return "error";
         }
     }
@@ -104,6 +102,83 @@ function toggleDeleteConfirmation(id) {
         $("#deleteConfirmation").removeClass("hide").addClass("show"); 
     } else {
         $("#deleteConfirmation").removeClass("show").addClass("hide");
+    }
+}
+
+{/* 
+<option>Hazard</option>
+<option>Religious</option>
+<option>Compass</option>
+<option>Food</option>
+<option>Drink</option>
+<option>Potion</option>
+<option>Animal</option>
+<option>Gems</option>
+<option>Wearable</option>
+<option>Magic</option>
+<option>Misc</option> 
+*/}
+function updateIconPreview() {
+    const iconSelect = $("#iconSelect").val();
+    const iconPreview = $("#iconPreview");
+    console.log($(".icon-preview").attr("id"));
+    switch (iconSelect) {
+        case "Hazard":
+            iconPreview.html(`
+                <image class="icon-preview" id="biohazard-solid" src="images/icons/Hazard.svg"></image>
+            `);
+            break;
+        case "Religious":
+            iconPreview.html(`
+                <image class="icon-preview" id="book-bible" src="images/icons/Religious.svg"></image>
+            `);
+            break;
+        case "Compass":
+            iconPreview.html(`
+                <image class="icon-preview" id="compass-solid" src="images/icons/Compass.svg"></image>
+            `);
+            break;
+        case "Food":
+            iconPreview.html(`
+                <image class="icon-preview" id="drumstick-bite-solid" src="images/icons/Food.svg"></image>
+            `);
+            break;
+        case "Drink":
+            iconPreview.html(`
+                <image class="icon-preview" id="wine-bottle-solid" src="images/icons/Drink.svg"></image>
+            `);
+            break;
+        case "Potion":
+            iconPreview.html(`
+                <image class="icon-preview" id="flask-solid" src="images/icons/Potion.svg"></image>
+            `);
+            break;
+        case "Animal":
+            iconPreview.html(`
+                <image class="icon-preview" id="frog-solid" src="images/icons/Animal.svg"></image>
+            `);
+            break;
+        case "Gems":
+            iconPreview.html(`
+                <image class="icon-preview" id="gem-solid.svg" src="images/icons/Gems.svg"></image>
+            `);
+            break;
+        case "Wearable":
+            iconPreview.html(`
+                <image class="icon-preview" id="shirt-solid" src="images/icons/Wearable.svg"></image>
+            `);
+            break;
+        case "Magic":
+            iconPreview.html(`
+                <image class="icon-preview" id="wand-magic-sparkles-solid" src="images/icons/Magic.svg"></image>
+            `);
+            break;
+        case "Misc":
+            iconPreview.html(`
+                <image class="icon-preview" id="question-solid" src="images/icons/Misc.svg"></image>
+            `);
+            break;
+        default:
     }
 }
 
@@ -176,7 +251,7 @@ async function createItem() {
             "itemName": $("#formName").val(),
             "itemPrice": convert2Coin($("#formValue").val()),
             "description": $("#formDescription").val(),
-            "icon": "lock",
+            "icon": $("#iconSelect").val(),
             "dateAdded": Date.now(),
             "id": newId
         }
@@ -231,7 +306,7 @@ async function fillPage() {
 
         $(`#row${rowCount}`).append(`
             <div class="col item-display">
-                <h4><span class="material-icons item-icon">${item.icon}</span>${item.itemName}</h4>
+                <h4><image class="item-icon" src="images/icons/${item.icon}.svg"></image>${item.itemName}</h4>
                 <p>${item.description}</p>
                 <div>${dateConversion}</div>
                 <div class="row">
