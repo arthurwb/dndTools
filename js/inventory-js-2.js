@@ -333,7 +333,7 @@ async function fillPage() {
 
 
 window.onload = async function() {
-    console.log(currentDatabase.charAt(0).toUpperCase() + string.slice(1));
-    $("#databases").val(currentDatabase.charAt(0).toUpperCase() + string.slice(1)).change();
+    console.log(currentDatabase);
+    $("#databases").val(currentDatabase).change();
     await fillPage();
 }
