@@ -1,10 +1,11 @@
 const databaseDic = {
     "admin": "1297944581839380480",
-    "brooks": "1297992177228308480"
+    "brooks": "1297992177228308480",
+    "jesse": "1298345611265695744"
 };
 let sellId = 0;
 currentDatabase = document.cookie.split(";").find((row) => row.startsWith("database="))?.split("=")[1];
-let jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic[currentDatabase] || databaseDic.admin}`;
+let jsonBlob = `https://jsonblob.com/api/jsonBlob/${databaseDic[currentDatabase]}`;
 
 // ----------- Util ----------
 // sample input 
@@ -334,6 +335,6 @@ async function fillPage() {
 
 window.onload = async function() {
     console.log(currentDatabase);
-    $("#databases").val(currentDatabase).change();
+    $("#databases").val(currentDatabase || "admin").change();
     await fillPage();
 }

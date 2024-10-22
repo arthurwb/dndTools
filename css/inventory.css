@@ -167,3 +167,14 @@ input {
     border-radius: 5px;
     border: solid var(--black);
 }
+
+/* -=-=-=-=-=-=-=- Phone styling -=-=-=-=-=-=-=-=- */
+@media only screen and (max-width: 768px) {
+    .item-display {
+        min-width: 40%;
+    }
+
+    .item-icon {
+        width: 20px;
+    }
+}
