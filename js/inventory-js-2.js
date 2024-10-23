@@ -75,6 +75,10 @@ async function changeDatabase() {
 
 async function modCoins(type) {
     let coins = convert2Coin($("#coins").val());
+    if (coins == "error") {
+        $("#coins").val("");
+        return;
+    };
     let data = await getAll();
     if (type == "+") {
         data.coins += coins;
